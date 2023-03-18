@@ -51,7 +51,7 @@ boxbuffer = opt.boxbuffer #70
 numframesmade = 0
 n = start
 
-print step
+print (step)
 
 startx = 0
 endx = myshape[1]
@@ -84,11 +84,11 @@ if opt.debug and (not os.path.exists(savedir + '/debug')):
 
 print('----------------- Loading Frames -----------------')
 frames = sorted(os.listdir(frames_dir))
-print frames
+print (frames)
 print('----------------- All Loaded -----------------')
 
 while n <= end:
-	print n
+	print (n)
 	framesmadestr = '%06d' % numframesmade
 
 	filebase_name = os.path.splitext(frames[n])[0]
@@ -99,11 +99,12 @@ while n <= end:
 
 	### try yaml
 	posepts = readkeypointsfile(key_name + "_pose")
-	facepts = readkeypointsfile(key_name + "_face")
-	r_handpts = readkeypointsfile(key_name + "_hand_right")
-	l_handpts = readkeypointsfile(key_name + "_hand_left")
+	# facepts = readkeypointsfile(key_name + "_face")
+	# r_handpts = readkeypointsfile(key_name + "_hand_right")
+	# l_handpts = readkeypointsfile(key_name + "_hand_left")
 	if posepts is None: ## try json
-		posepts, facepts, r_handpts, l_handpts = readkeypointsfile(key_name + "_keypoints")
+		# posepts, facepts, r_handpts, l_handpts = readkeypointsfile(key_name + "_keypoints")
+		posepts = readkeypointsfile(key_name + "_keypoints")
 		if posepts is None:
 			print('unable to read keypoints file')
 			import sys
@@ -111,11 +112,11 @@ while n <= end:
 
 	if not (len(posepts) in poselen):
 		# empty or contains multiple detections
-		print "empty", len(posepts)
+		print ("empty", len(posepts))
 		n += 1
 		continue
 	else:
-		print 'graphing file %s' % filebase_name
+		print ('graphing file %s' % filebase_name)
 		if opt.map_25_to_23:
 			posepts = map_25_to_23(posepts)
 
@@ -135,9 +136,9 @@ while n <= end:
 			l_handpts = fix_scale_coords(l_handpts, scale, translate)
 
 		canvas = renderpose(posepts, 255 * np.ones(myshape, dtype='uint8'))
-		canvas = renderface_sparse(facepts, canvas, numkeypoints, disp=False)
-		canvas = renderhand(r_handpts, canvas)
-		canvas = renderhand(l_handpts, canvas)
+		# canvas = renderface_sparse(facepts, canvas, numkeypoints, disp=False)
+		# canvas = renderhand(r_handpts, canvas)
+		# canvas = renderhand(l_handpts, canvas)
 
 		oriImg = Image.fromarray(oriImg[:, :, [2,1,0]])
 		canvas = Image.fromarray(canvas[:, :, [2,1,0]])

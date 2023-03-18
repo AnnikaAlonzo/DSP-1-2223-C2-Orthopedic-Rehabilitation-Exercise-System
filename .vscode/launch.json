@@ -1,0 +1,94 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: graph_posenorm.py",
+            "type": "python",
+            "args": [
+                "--target_keypoints",
+                "openpose\\keypoints",
+                "--source_keypoints",
+                "openpose\\ayson_keypoints",
+                "--target_shape", "1080", "1920", "3",
+                "--source_shape", "1080", "1920", "3",
+                "--source_frames", "openpose\\output_images_ayson",
+                "--results",
+                "sample_data\\train\\savefolder",
+                "--target_spread", "0", "823",
+                "--source_spread", "0", "823",
+                "--calculate_scale_translation",
+                "--facetexts"
+            ],
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole",
+            "justMyCode": true
+        },
+        { // config for dataset preparation: graph_avesmooth.py
+            "name": "Python: graph_avesmooth.py",
+            "type": "python",
+            "args": [
+                "--keypoints_dir",
+                "openpose\\keypoints",
+                "--frames_dir",
+                "openpose\\output_images",
+                "--save_dir",
+                "sample_data\\train\\savefolder",
+                "--spread",
+                "0",
+                "823",
+                "4",
+                "--facetexts"
+            ],
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole",
+            "justMyCode": true
+        },
+        { // config for dataset preparation: graph_train.py
+            "name": "Python: graph_train.py",
+            "type": "python",
+            "args": [
+                "--keypoints_dir",
+                "openpose\\keypoints",
+                "--frames_dir",
+                "openpose\\output_images",
+                "--save_dir",
+                "sample_data\\train\\savefolder",
+                "--spread",
+                "0",
+                "400",
+                "1",
+                "--facetexts"
+            ],
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole",
+            "justMyCode": true
+        },
+        { // config for training on global stage
+            "name": "Python: train_fullts.py",
+            "type": "python",
+            "args": [
+                "--dataroot",
+                "savefolder\\train",
+                "--checkpoints_dir",
+                "CHECKPOINTS",
+                "--loadSize",
+                "512",
+                "--no_instance",
+                "--no_flip",
+                "--tf_log",
+                "--label_nc",
+                "6"
+            ],
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole",
+            "justMyCode": true
+        }
+    ]
+}

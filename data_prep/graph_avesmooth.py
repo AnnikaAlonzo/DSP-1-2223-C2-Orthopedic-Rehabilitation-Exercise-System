@@ -57,7 +57,7 @@ boxbuffer = opt.boxbuffer
 numframesmade = 0
 n = start
 
-print step
+print (step)
 
 startx = 0
 endx = myshape[1]
@@ -101,7 +101,7 @@ original_queue = []
 
 n = start
 while n <= end:
-	print n
+	print (n)
 	framesmadestr = '%06d' % numframesmade
 
 	filebase_name = os.path.splitext(frames[n])[0]
@@ -112,18 +112,19 @@ while n <= end:
 
 	### try yaml
 	posepts = readkeypointsfile(key_name + "_pose")
-	facepts = readkeypointsfile(key_name + "_face")
-	r_handpts = readkeypointsfile(key_name + "_hand_right")
-	l_handpts = readkeypointsfile(key_name + "_hand_left")
+	# facepts = readkeypointsfile(key_name + "_face")
+	# r_handpts = readkeypointsfile(key_name + "_hand_right")
+	# l_handpts = readkeypointsfile(key_name + "_hand_left")
 	if posepts is None: ## try json
-		posepts, facepts, r_handpts, l_handpts = readkeypointsfile(key_name + "_keypoints")
+		# posepts, facepts, r_handpts, l_handpts = readkeypointsfile(key_name + "_keypoints")
+		posepts = readkeypointsfile(key_name + "_keypoints")
 		if posepts is None:
 			print('unable to read keypoints file')
 			import sys
 			sys.exit(0)
 
 	if not (len(posepts) in poselen):
-		print "EMPTY"
+		print ("EMPTY")
 		n += 1
 		continue
 	oriImg = cv.imread(frame_name)
@@ -142,9 +143,9 @@ while n <= end:
 		l_handpts = fix_scale_coords(l_handpts, scale, translate)
 
 	pose_window += [posepts]
-	face_window += [facepts]
-	rhand_window += [r_handpts]
-	lhand_window += [l_handpts]
+	# face_window += [facepts]
+	# rhand_window += [r_handpts]
+	# lhand_window += [l_handpts]
 
 	original_queue += [oriImg]
 
@@ -168,36 +169,36 @@ while n <= end:
 		ave_posepts = ave_posepts * pose_cons
 		# print ave_posepts
 
-		facedivide = np.prod((all_face[:, 2::3] > 0).astype('float'), axis=0)
-		face_cons = np.zeros(len(face_window[0]))
-		face_cons[::3] = facedivide
-		face_cons[1::3] = facedivide
-		face_cons[2::3] = facedivide
-		ave_facepts = np.sum(all_face, axis=0) / float(w_size)
-		ave_facepts = ave_facepts * face_cons
+		# facedivide = np.prod((all_face[:, 2::3] > 0).astype('float'), axis=0)
+		# face_cons = np.zeros(len(face_window[0]))
+		# face_cons[::3] = facedivide
+		# face_cons[1::3] = facedivide
+		# face_cons[2::3] = facedivide
+		# ave_facepts = np.sum(all_face, axis=0) / float(w_size)
+		# ave_facepts = ave_facepts * face_cons
 
-		rhanddivide = np.prod((all_rhand[:, 2::3] > 0).astype('float'), axis=0)
-		rhand_cons = np.zeros(len(rhand_window[0]))
-		rhand_cons[::3] = rhanddivide
-		rhand_cons[1::3] = rhanddivide
-		rhand_cons[2::3] = rhanddivide
-		ave_rhand = np.sum(all_rhand, axis=0) / float(w_size)
-		ave_rhand = ave_rhand * rhand_cons
+		# rhanddivide = np.prod((all_rhand[:, 2::3] > 0).astype('float'), axis=0)
+		# rhand_cons = np.zeros(len(rhand_window[0]))
+		# rhand_cons[::3] = rhanddivide
+		# rhand_cons[1::3] = rhanddivide
+		# rhand_cons[2::3] = rhanddivide
+		# ave_rhand = np.sum(all_rhand, axis=0) / float(w_size)
+		# ave_rhand = ave_rhand * rhand_cons
 
-		lhanddivide = np.prod((all_lhand[:, 2::3] > 0).astype('float'), axis=0)
-		lhand_cons = np.zeros(len(lhand_window[0]))
-		lhand_cons[::3] = lhanddivide
-		lhand_cons[1::3] = lhanddivide
-		lhand_cons[2::3] = lhanddivide
-		ave_lhand = np.sum(all_lhand, axis=0) / float(w_size)
-		ave_lhand = ave_lhand * lhand_cons
+		# lhanddivide = np.prod((all_lhand[:, 2::3] > 0).astype('float'), axis=0)
+		# lhand_cons = np.zeros(len(lhand_window[0]))
+		# lhand_cons[::3] = lhanddivide
+		# lhand_cons[1::3] = lhanddivide
+		# lhand_cons[2::3] = lhanddivide
+		# ave_lhand = np.sum(all_lhand, axis=0) / float(w_size)
+		# ave_lhand = ave_lhand * lhand_cons
 
 		ave = aveface(ave_posepts)
 
 		canvas = renderpose(ave_posepts, 255 * np.ones(myshape, dtype='uint8'))
-		canvas = renderface_sparse(ave_facepts, canvas, numkeypoints)
-		canvas = renderhand(ave_rhand, canvas)
-		canvas = renderhand(ave_lhand, canvas)
+		# canvas = renderface_sparse(ave_facepts, canvas, numkeypoints)
+		# canvas = renderhand(ave_rhand, canvas)
+		# canvas = renderhand(ave_lhand, canvas)
 
 		canvas = canvas[starty:endy, startx:endx, [2,1,0]]
 		canvas = Image.fromarray(canvas)

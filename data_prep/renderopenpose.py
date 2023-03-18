@@ -401,7 +401,7 @@ def renderface(facepts, canvas, disp=False, threshold = 0.2, smalldot = 2):
 
 	return canvas
 
-def renderface_sparse(facepts, canvas, numkeypoints, disp=False, threshold = 0.2, smalldot = 4):
+def renderface_sparse(facepts, myshape, canvas, numkeypoints, disp=False, threshold = 0.2, smalldot = 4):
 	if numkeypoints == 0:
 		return renderface(facepts, myshape, canvas, disp, threshold, getave)
 	if disp:
@@ -564,7 +564,7 @@ def get_pose_stats(posepts):
 		rfoot = 11
 		lfoot = 14
 	else:
-		print "pose length of %d format is not supported" % len(posepts)
+		print ("pose length of %d format is not supported" % len(posepts))
 		import sys
 		sys.exit(1)
 		
@@ -708,7 +708,7 @@ def getmedians_adapt(keypoint_list, threshold = 0.0, printme=False):
 			else:
 				yo = np.array([0.0,0.0,0.0])
 			if printme:
-				print yo, j//3
+				print (yo, j//3)
 		# else:
 		# 	print "hoobooo"
 		my_median[j] = yo[0]
@@ -718,5 +718,5 @@ def getmedians_adapt(keypoint_list, threshold = 0.0, printme=False):
 	# print len(my_median)
 	# print my_median[-1]
 	if printme:
-		print my_median
+		print (my_median)
 	return np.array(my_median)

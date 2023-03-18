@@ -51,6 +51,7 @@ parser.add_argument('--source_median_frac', type=float, default=0.5, help='for s
 parser.add_argument('--filestart', type=str, default='frame', help='file start name, files should be named filestart%06d before extension')
 parser.add_argument('--calculate_scale_translation', action='store_true', help='use this flag to calcuate the translation and scale from scratch. Else, try to load them from a saved file.')
 parser.add_argument('--format', type=str, default='json', help='file format for keypoint files, only json and yaml are supported, [json|yaml]')
+parser.add_argument('--facetexts', action='store_true', help='use this flag to also save face 128x128 bounding boxes')
 
 
 def get_keypoints_stats(mypath, myshape, spread, startname = "frame", stophere=20000):
@@ -70,7 +71,7 @@ def get_keypoints_stats(mypath, myshape, spread, startname = "frame", stophere=2
 
 	while ok:
 		mynum = np.random.randint(low=spread[0], high=spread[1])
-		strmynum = '%06d' % mynum
+		strmynum = '%012d' % mynum
 		f_yaml = startname + strmynum + "_pose.yml"
 		f_json = startname + strmynum + "_keypoints.json"
 
@@ -90,7 +91,7 @@ def get_keypoints_stats(mypath, myshape, spread, startname = "frame", stophere=2
 					sys.exit(0)
 
 			if len(posepts) != poselen:
-				print "EMPTY stats", key_name, len(posepts)
+				print ("EMPTY stats", key_name, len(posepts))
 				continue
 			else:
 				check_me = get_pose_stats(posepts)
@@ -110,9 +111,9 @@ def get_keypoints_stats(mypath, myshape, spread, startname = "frame", stophere=2
 					else:
 						tiptoe_to_height[max_tip_toe] += [height]
 		else:
-			print "cannot find file " + os.path.join(mypath, f)
+			print ("cannot find file " + os.path.join(mypath, f_yaml))
 		if count % 5000 == 0:
-			print count
+			print (count)
 		if count >= stophere:
 			ok = False
 		if count >= spread[1] - spread[0]:
@@ -163,20 +164,20 @@ def get_minmax_scales(tiptoe_to_height0, tiptoe_to_height1, translation, frac):
 		if cur_h > max_heightfar1:
 			max_heightfar1 = cur_h
 
-	print "far"
-	print max_heightfar0, max_heightfar1
-	print "near"
-	print max_heightclose0, max_heightclose1
+	print ("far")
+	print (max_heightfar0, max_heightfar1)
+	print ("near")
+	print (max_heightclose0, max_heightclose1)
 
 	max_all0 = max(tiptoe_to_height0.values())[0]
 	max_all1 = max(tiptoe_to_height1.values())[0]
 
 	if max_all0 - max_heightclose0 > 0.1*max_all0:
-		print "reset max_heightclose0"
+		print ("reset max_heightclose0")
 		max_heightclose0 = max_all0
 
 	if max_all1 - max_heightclose1 > 0.1*max_all1:
-		print "reset max_heightclose1"
+		print ("reset max_heightclose1")
 		max_heightclose1 = max_all1
 
 	scale_close = max_heightclose0 / float(max_heightclose1)
@@ -243,10 +244,10 @@ def transform_interp(mypath, scaleyy, translation, myshape, savedir, spread_m, s
 	my_masks = 0
 	mygraphs = 0
 	posefaces = 0
-	print numkeypoints
+	print (numkeypoints)
 	if numkeypoints == 0:
 		my_neighbors, my_masks, mygraphs, posefaces = readinfacepts(dir_facepts, spread_m, numcompare=100000)
-		print "computed neighbors"
+		print ("computed neighbors")
 
 	n = start
 
@@ -259,7 +260,7 @@ def transform_interp(mypath, scaleyy, translation, myshape, savedir, spread_m, s
 	noneighbors = []
 
 	while n <= end:
-		print n
+		print (n)
 		framesmadestr = '%06d' % numberframesmade
 		string_num = '%06d' % n
 		key_name = mypath + "/" + startname + string_num
@@ -283,7 +284,7 @@ def transform_interp(mypath, scaleyy, translation, myshape, savedir, spread_m, s
 		startcanvas = 255 * np.ones(myshape, dtype='uint8')
 
 		if len(posepts) != poselen:
-			print "EMPTY or more than one person"
+			print ("EMPTY or more than one person")
 		else:
 			posepts = posepts[:poselen]
 			check_me = get_pose_stats(posepts)
@@ -296,7 +297,7 @@ def transform_interp(mypath, scaleyy, translation, myshape, savedir, spread_m, s
 				diff = lastdiff
 				scale = lastscale
 				startcanvas = 255 * np.ones(myshape, dtype='uint8')
-				print key_name, 'my pose is not so good'
+				print (key_name, 'my pose is not so good')
 			else:
 				height, min_tip_toe, max_tip_toe = check_me
 				diff, scale = calculate_translation(max_tip_toe, translation, scaleyy)
@@ -308,9 +309,9 @@ def transform_interp(mypath, scaleyy, translation, myshape, savedir, spread_m, s
 				min_coords = get_min_point(posepts)
 				min_coords = (myshape[1]//2, min_coords[1])
 				# min_coords = (min_coords[1], min_coords[0])
-				print min_coords
+				print (min_coords)
 				min_unset = False
-				print 'setting min'
+				print ('setting min')
 			scaledcoords = (scale * min_coords[0], scale*min_coords[1])
 			translateback = (min_coords[0] - scaledcoords[0], min_coords[1] - scaledcoords[1] + diff)
 
@@ -354,7 +355,7 @@ def transform_interp(mypath, scaleyy, translation, myshape, savedir, spread_m, s
 						shutil.copy2(savethisframe, savedir + '/test_img/frame' + framesmadestr + '.png') # complete target filename given
 						realframes_window = realframes_window[1:]
 					else:
-						print 'no frame at' + savethisframe
+						print ('no frame at' + savethisframe)
 
 
 				pose_window = pose_window[1:]
@@ -386,12 +387,12 @@ def transform_interp(mypath, scaleyy, translation, myshape, savedir, spread_m, s
 							oriImg = Image.fromarray(oriImg)
 							oriImg.save(savedir + "/savefaces/frame" + framesmadestr + '.png')
 
-				print numberframesmade
+				print (numberframesmade)
 
 				numberframesmade += 1
 
 		n += step
-	print "num skipped = " + str(skipped)
+	print ("num skipped = " + str(skipped))
 
 opt = parser.parse_args()
 
@@ -440,8 +441,8 @@ if calculate_scale_and_translation:
 	m_tiptoefrommid = m_maxtoe - m_median
 	t_tiptoefrommid = t_maxtoe - t_median
 
-	print m_median
-	print t_median
+	print (m_median)
+	print (t_median)
 
 	m_distancetomid = -1*np.array(m_tiptoes) #median - tiptoes
 	m_distancetomid = m_distancetomid + m_median
@@ -449,7 +450,7 @@ if calculate_scale_and_translation:
 	m_abovemedian = m_distancetomid[m_inds]
 	m_biggestind = np.argmax(m_abovemedian)
 	m_horizon = (m_abovemedian[m_biggestind] -m_median) * -1
-	print m_horizon
+	print (m_horizon)
 
 	t_distancetomid = -1*np.array(t_tiptoes) #median - tiptoes
 	t_distancetomid = t_distancetomid + t_median
@@ -457,13 +458,13 @@ if calculate_scale_and_translation:
 	t_abovemedian = t_distancetomid[t_inds]
 	t_biggestind = np.argmax(t_abovemedian)
 	t_horizon = (t_abovemedian[t_biggestind] -t_median) * -1
-	print t_horizon
+	print (t_horizon)
 
 	scale = 1
 	translation = [(m_maxtoe, m_horizon), (t_maxtoe, t_horizon)]
 
 	if t_maxtoe - t_horizon < m_maxtoe - m_horizon:
-		print " small range "
+		print (" small range ")
 		m_middle = 0.5*(m_maxtoe + m_horizon)
 		t_half = 0.5*(t_maxtoe - t_horizon)
 		new_m_horizon = m_middle - t_half
@@ -485,21 +486,21 @@ else:
 		with open(norm_file, 'rb') as f:
 			try:
 				line = f.readline()
-				print line
+				print (line)
 				params = line.split(" ")
 				scale = (float(params[0]), float(params[1]))
 				line = f.readline()
-				print line
+				print (line)
 				params = line.split(" ")
-				print params
+				print (params)
 				translation = [(float(params[0]), float(params[1])), (float(params[2]), float(params[3]))]
 			except :
 				print('unable to extract scale, translation from ' + norm_file)
 				import sys
 				sys.exit(0)
 
-print "transformation:"
-print scale, translation
+print ("transformation:")
+print (scale, translation)
 
 transform_interp(source_keypoints, scale, translation, shape1, savedir, \
 		spread_m, spread_t, "", framesdir, numkeypoints, startname)
