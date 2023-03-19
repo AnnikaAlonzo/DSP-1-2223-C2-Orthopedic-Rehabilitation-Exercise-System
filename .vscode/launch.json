@@ -4,6 +4,29 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        { // config for testing on global stage
+            "name": "Python: test_fullts.py global",
+            "type": "python",
+            "args": [
+                "--name",
+                "label2city",
+                "--dataroot",
+                "data_prep_saved\\test",
+                "--checkpoints_dir",
+                "CHECKPOINTS",
+                "--results_dir", "RESULTS",
+                "--loadSize",
+                "512",
+                "--no_instance",
+                "--how_many", "191",
+                "--label_nc",
+                "6"
+            ],
+            "request": "launch",
+            "program": "${file}",
+            "console": "internalConsole",
+            "justMyCode": true
+        },
         { // config for training on local stage
             "name": "Python: train_fullts.py local",
             "type": "python",
@@ -14,11 +37,16 @@
                 "data_prep_saved\\train",
                 "--checkpoints_dir",
                 "CHECKPOINTS",
-                "--load_pretrain", "CHECKPOINTS\\label2city",
-                "--netG", "local",
-                "--ngf", "32",
-                "--num_D", "3",
-                "--resize_or_crop", "none",
+                "--load_pretrain",
+                "CHECKPOINTS\\label2city",
+                "--netG",
+                "local",
+                "--ngf",
+                "32",
+                "--num_D",
+                "3",
+                "--resize_or_crop",
+                "none",
                 "--no_instance",
                 "--no_flip",
                 "--tf_log",
@@ -30,7 +58,7 @@
             "console": "internalConsole",
             "justMyCode": true
         },
-        {
+        { // config for posenorm dataset preparation
             "name": "Python: graph_posenorm.py",
             "type": "python",
             "args": [
