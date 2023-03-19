@@ -99,7 +99,7 @@ class Visualizer():
             for tag, value in errors.items(): 
                 import tensorflow as tf
                 summary = tf.summary.scalar(name=tag, data=value)
-                self.writer.add_summary(summary, step)
+                # self.writer.add_summary(summary, step)
 
     # errors: same format as |errors| of plotCurrentErrors
     def print_current_errors(self, epoch, i, errors, t):
