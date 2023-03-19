@@ -130,7 +130,8 @@ class VGGLoss(nn.Module):
         self.weights = [1.0/32, 1.0/16, 1.0/8, 1.0/4, 1.0]        
 
     def forward(self, x, y):              
-        x_vgg, y_vgg = self.vgg(x), self.vgg(y)
+        x_vgg = self.vgg(x)
+        y_vgg = self.vgg(y)
         loss = 0
         for i in range(len(x_vgg)):
             loss += self.weights[i] * self.criterion(x_vgg[i], y_vgg[i].detach())        
@@ -516,4 +517,4 @@ class Vgg19(torch.nn.Module):
         h_relu4 = self.slice4(h_relu3)        
         h_relu5 = self.slice5(h_relu4)                
         out = [h_relu1, h_relu2, h_relu3, h_relu4, h_relu5]
-        return out
+        return 
