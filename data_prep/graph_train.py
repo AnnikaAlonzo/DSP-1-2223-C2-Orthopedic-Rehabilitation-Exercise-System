@@ -131,9 +131,9 @@ while n <= end:
 
 			oriImg = fix_scale_image(oriImg, scale, translate, myshape)
 			posepts = fix_scale_coords(posepts, scale, translate)
-			facepts = fix_scale_coords(facepts, scale, translate)
-			r_handpts = fix_scale_coords(r_handpts, scale, translate)
-			l_handpts = fix_scale_coords(l_handpts, scale, translate)
+			# facepts = fix_scale_coords(facepts, scale, translate)
+			# r_handpts = fix_scale_coords(r_handpts, scale, translate)
+			# l_handpts = fix_scale_coords(l_handpts, scale, translate)
 
 		canvas = renderpose(posepts, 255 * np.ones(myshape, dtype='uint8'))
 		# canvas = renderface_sparse(facepts, canvas, numkeypoints, disp=False)

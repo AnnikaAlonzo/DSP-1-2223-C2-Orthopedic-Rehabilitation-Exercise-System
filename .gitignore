@@ -1,6 +1,7 @@
 debug*
 checkpoints/
 results/
+openpose/
 build/
 dist/
 torch.egg-info/

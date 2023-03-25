@@ -138,9 +138,9 @@ while n <= end:
 
 		oriImg = fix_scale_image(oriImg, scale, translate, myshape)
 		posepts = fix_scale_coords(posepts, scale, translate)
-		facepts = fix_scale_coords(facepts, scale, translate)
-		r_handpts = fix_scale_coords(r_handpts, scale, translate)
-		l_handpts = fix_scale_coords(l_handpts, scale, translate)
+		# facepts = fix_scale_coords(facepts, scale, translate)
+		# r_handpts = fix_scale_coords(r_handpts, scale, translate)
+		# l_handpts = fix_scale_coords(l_handpts, scale, translate)
 
 	pose_window += [posepts]
 	# face_window += [facepts]
