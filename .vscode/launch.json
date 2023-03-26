@@ -9,7 +9,7 @@
             "type": "python",
             "args": [
                 "--name",
-                "label2city",
+                "GAN_Model_Global",
                 "--dataroot",
                 "data_prep_saved\\test",
                 "--checkpoints_dir",
@@ -18,7 +18,7 @@
                 "--loadSize",
                 "512",
                 "--no_instance",
-                "--how_many", "191",
+                "--how_many", "499",
                 "--label_nc",
                 "6"
             ],
