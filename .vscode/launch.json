@@ -18,7 +18,7 @@
                 "--loadSize",
                 "512",
                 "--no_instance",
-                "--how_many", "499",
+                "--how_many", "999",
                 "--label_nc",
                 "6"
             ],
@@ -105,7 +105,7 @@
                 "--spread",
                 "0",
                 "1999",
-                "4",
+                "2",
                 "--facetexts"
             ],
             "request": "launch",
