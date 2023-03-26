@@ -97,9 +97,9 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\val1_keypoints",
+                "openpose\\val_keypoints",
                 "--frames_dir",
-                "openpose\\val1_output_frames",
+                "openpose\\val_output_frames",
                 "--save_dir",
                 "data_prep_saved\\test",
                 "--spread",
@@ -118,9 +118,9 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\val2_keypoints",
+                "openpose\\train_keypoints",
                 "--frames_dir",
-                "openpose\\val2_output_frames",
+                "openpose\\train_output_frames",
                 "--save_dir",
                 "data_prep_saved\\train",
                 "--spread",
