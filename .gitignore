@@ -1,6 +1,9 @@
 debug*
+CalibrationVids/
 checkpoints/
+COMBINED/
 results/
+ExerciseVids/
 openpose/
 build/
 dist/

@@ -118,14 +118,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\train_keypoints",
+                "openpose\\judecalib_keypoints",
                 "--frames_dir",
-                "openpose\\train_output_frames",
+                "openpose\\judecalib_frames",
                 "--save_dir",
-                "data_prep_saved\\train",
+                "data_prep_saved\\train_judecalib",
                 "--spread",
                 "0",
-                "999",
+                "3704",
                 "1",
                 "--facetexts"
             ],
