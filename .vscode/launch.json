@@ -118,14 +118,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\judecalib_keypoints",
+                "openpose\\annikacalib_keypoints",
                 "--frames_dir",
-                "openpose\\judecalib_frames",
+                "openpose\\annikacalib_frames",
                 "--save_dir",
-                "data_prep_saved\\train_judecalib",
+                "data_prep_saved\\train_annikacalib",
                 "--spread",
                 "0",
-                "3704",
+                "3709",
                 "1",
                 "--facetexts"
             ],
