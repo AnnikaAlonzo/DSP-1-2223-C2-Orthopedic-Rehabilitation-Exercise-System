@@ -9,6 +9,22 @@ import numpy as np
 import os
 import collections
 from PIL import Image
+import cv2 as cv
+
+#Custom function
+def im2vid(img_path, video_name):
+
+    images = [img for img in os.listdir(img_path) if img.endswith(".png")]
+    frame = cv.imread(os.path.join(img_path,images[0]))
+    height, width, layers = frame.shape
+    save_path = os.path.join(img_path,video_name)
+    video = cv.VideoWriter(save_path, 0, 30, (width,height))
+
+    for image in images:
+        video.write(cv.imread(os.path.join(img_path,image)))
+
+    cv.destroyAllWindows()
+    video.release()
 
 # Converts a Tensor into a Numpy array
 # |imtype|: the desired type of the converted numpy array

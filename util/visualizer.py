@@ -132,3 +132,9 @@ class Visualizer():
             txts.append(label)
             links.append(image_name)
         webpage.add_images(ims, txts, links, width=self.win_size)
+
+    def save_video(self, webpage,image_path):
+        video_name = '80seatedlongarc_annika.mp4'
+        image_dir = webpage.get_image_dir()
+        save_path = os.path.join(image_dir,video_name)
+        util.im2vid(image_dir, video_name)
