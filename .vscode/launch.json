@@ -99,14 +99,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\lunge_45_keypoints",
+                "openpose\\lunge_80_keypoints",
                 "--frames_dir",
-                "openpose\\lunge_45_frames",
+                "openpose\\lunge_80_frames",
                 "--save_dir",
-                "data_prep_saved\\test_45lunge",
+                "data_prep_saved\\test_80lunge",
                 "--spread",
                 "0",
-                "659",
+                "662",
                 "1",
                 "--facetexts"
             ],
