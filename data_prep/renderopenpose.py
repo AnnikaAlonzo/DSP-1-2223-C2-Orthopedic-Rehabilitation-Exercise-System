@@ -22,6 +22,8 @@ def readkeypointsfile(myfile):
 	""" supports only .yml and .json files """
 	# print(myfile)
 	filename, file_extension = os.path.splitext(myfile)
+	# print(myfile)
+	# print(file_extension + ".yml")
 	# print myfile
 	if len(file_extension) == 0:
 		if os.path.exists(myfile + ".yml"):
@@ -30,10 +32,10 @@ def readkeypointsfile(myfile):
 			return readkeypointsfile_json(myfile + ".json")
 		elif os.path.exists(myfile + ".JSON"):
 			return readkeypointsfile_json(myfile + ".JSON")
-		# else:
-		# 	print("filename extension is not .yml or .json")
-		# 	import sys
-		# 	sys.exit(1)
+		else:
+			print("filename extension is not .yml or .json")
+			# import sys
+			# sys.exit(1)
 		return None
 	else:
 		if file_extension == ".yml":
@@ -42,8 +44,8 @@ def readkeypointsfile(myfile):
 			return readkeypointsfile_json(myfile)
 		elif file_extension == ".JSON":
 			return readkeypointsfile_json(myfile)
-		# else:
-		# 	print("filename extension is not .yml or .json")
+		else:
+			print("filename extension is not .yml or .json")
 		# 	import sys
 		# 	sys.exit(1)
 		return None
