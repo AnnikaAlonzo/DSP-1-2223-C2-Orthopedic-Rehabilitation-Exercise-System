@@ -119,14 +119,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\squat_45_keypoints",
+                "openpose\\heelraise_annika_45_keypoints",
                 "--frames_dir",
-                "openpose\\squat_45_frames",
+                "openpose\\heelraise_annika_45_frames",
                 "--save_dir",
-                "data_prep_saved\\test_45squat",
+                "data_prep_saved\\test_45heelraise_annika",
                 "--spread",
                 "0",
-                "260",
+                "500",
                 "1",
                 "--facetexts"
             ],
