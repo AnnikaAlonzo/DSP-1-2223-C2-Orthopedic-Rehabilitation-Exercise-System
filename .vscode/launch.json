@@ -119,14 +119,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\seatedlongarcquad_annika_80_keypoints",
+                "openpose\\seatedlongarcquad_lance_80_keypoints",
                 "--frames_dir",
-                "openpose\\seatedlongarcquad_annika_80_frames",
+                "openpose\\seatedlongarcquad_lance_80_frames",
                 "--save_dir",
-                "data_prep_saved\\test_80seatedlongarcquad_annika",
+                "data_prep_saved\\test_80seatedlongarcquad_lance",
                 "--spread",
                 "0",
-                "523",
+                "505",
                 "1",
                 "--facetexts"
             ],
