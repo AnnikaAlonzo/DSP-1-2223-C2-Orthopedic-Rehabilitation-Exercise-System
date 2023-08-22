@@ -119,14 +119,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\lunge_annika_80_keypoints",
+                "openpose\\lunge_lance_80_keypoints",
                 "--frames_dir",
-                "openpose\\lunge_annika_80_frames",
+                "openpose\\lunge_lance_80_frames",
                 "--save_dir",
-                "data_prep_saved\\test_80lunge_annika",
+                "data_prep_saved\\test_80lunge_lance",
                 "--spread",
                 "0",
-                "505",
+                "594",
                 "1",
                 "--facetexts"
             ],
