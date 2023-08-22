@@ -119,14 +119,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\heelraise_annika_80_keypoints",
+                "openpose\\heelraise_lance_80_keypoints",
                 "--frames_dir",
-                "openpose\\heelraise_annika_80_frames",
+                "openpose\\heelraise_lance_80_frames",
                 "--save_dir",
-                "data_prep_saved\\test_80heelraise_annika",
+                "data_prep_saved\\test_80heelraise_lance",
                 "--spread",
                 "0",
-                "444",
+                "542",
                 "1",
                 "--facetexts"
             ],
