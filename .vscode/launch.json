@@ -119,14 +119,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\standingkneeflexion_annika_45_keypoints",
+                "openpose\\standingkneeflexion_lance_45_keypoints",
                 "--frames_dir",
-                "openpose\\standingkneeflexion_annika_45_frames",
+                "openpose\\standingkneeflexion_lance_45_frames",
                 "--save_dir",
-                "data_prep_saved\\test_45standingkneeflexion_annika",
+                "data_prep_saved\\test_45standingkneeflexion_lance",
                 "--spread",
                 "0",
-                "568",
+                "505",
                 "1",
                 "--facetexts"
             ],
