@@ -140,14 +140,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\annika_calibration_80deg_with_keypoints",
+                "openpose\\annika_calibration_80deg_without_keypoints",
                 "--frames_dir",
-                "openpose\\annika_calibration_80deg_with_frames",
+                "openpose\\annika_calibration_80deg_without_frames",
                 "--save_dir",
-                "data_prep_saved\\train_annikacalibration_80deg_with",
+                "data_prep_saved\\train_annikacalibration_80deg_without",
                 "--spread",
                 "0",
-                "5477",
+                "4528",
                 "1",
                 "--facetexts"
             ],
