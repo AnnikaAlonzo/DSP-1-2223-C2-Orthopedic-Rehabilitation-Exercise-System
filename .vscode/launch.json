@@ -140,14 +140,14 @@
             "type": "python",
             "args": [
                 "--keypoints_dir",
-                "openpose\\lance_calibration_80deg_without_keypoints",
+                "openpose\\jude_calibration_45deg_with_keypoints",
                 "--frames_dir",
-                "openpose\\lance_calibration_80deg_without_frames",
+                "openpose\\jude_calibration_45deg_with_frames",
                 "--save_dir",
-                "data_prep_saved\\train_lancecalibration_80deg_without",
+                "data_prep_saved\\train_judecalibration_45deg_with",
                 "--spread",
                 "0",
-                "4542",
+                "5538",
                 "1",
                 "--facetexts"
             ],
