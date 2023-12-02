@@ -15,7 +15,6 @@ pip install dominate
 git clone https://github.com/carolineec/EverybodyDanceNow
 ```
 
-We ran our code on a 12GB NVIDIA GPU. Multi-GPU and CPU setups are currently untested.
 
 ## Training
 
@@ -130,7 +129,6 @@ python test_fullts.py \
 ```
 
 ## Dataset preparation
-We also provide code for creating both training and testing datasets (including global pose normalization) in the **data_prep** folder. See the **sample_data** folder for examples on how to prepare the code for training. Note the original_img is not necessary at test time and is provided only for reference.
 
 Our dataset preparation code is based on output formats from [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) and currently supports the COCO, BODY_23, and BODY_25 pose output format as well as hand and face keypoints. To install and run OpenPose please follow the directions at the [OpenPose repository](https://github.com/CMU-Perceptual-Computing-Lab/openpose).
 
