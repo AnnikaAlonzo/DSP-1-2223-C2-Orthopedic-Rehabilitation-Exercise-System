@@ -33,48 +33,6 @@ python train_fullts.py \
 --label_nc 6
 ```
 
-#### Local Stage
-Followed by a "local" stage model with 1024x512 resolution.
-```
-# train a model at 1024x512 resolution
-python train_fullts.py \
---name MY_MODEL_NAME_local \
---dataroot MY_TRAINING_DATASET \
---checkpoints_dir WHERE_TO_SAVE_CHECKPOINTS \
---load_pretrain MY_MODEL_NAME_global \
---netG local \
---ngf 32 \
---num_D 3 \
---resize_or_crop none \
---no_instance \
---no_flip \
---tf_log \
---label_nc 6
-```
-
-#### Face GAN stage
-We then can apply another stage with a separate GAN focused on the face region.
-```
-# train a model specialized to the face region
-python train_fullts.py \
---name MY_MODEL_NAME_face \
---dataroot MY_TRAINING_DATASET \
---load_pretrain MY_MODEL_NAME_local \
---checkpoints_dir WHERE_TO_SAVE_CHECKPOINTS \
---face_discrim \
---face_generator \
---faceGtype global \
---niter_fix_main 10 \
---netG local \
---ngf 32 \
---num_D 3 \
---resize_or_crop none \
---no_instance \
---no_flip \
---tf_log \
---label_nc 6
-```
-
 ## Testing
 
 The full checkpoint will be loaded from --checkpoints_dir/--name (i.e. if flags: "--name foo \ ... --checkpoints_dir bar \"" are included, checkpoints will be loaded from foo/bar)
@@ -89,40 +47,6 @@ python test_fullts.py \
 --checkpoints_dir CHECKPOINT_FILE_LOCATION \
 --results_dir WHERE_TO_SAVE_RESULTS \
 --loadSize 512 \
---no_instance \
---how_many 10000 \
---label_nc 6
-```
-
-#### Local Stage
-```
-# test model at 1024x512 resolution
-python test_fullts.py \
---name MY_MODEL_NAME_local \
---dataroot MY_TEST_DATASET \
---checkpoints_dir CHECKPOINT_FILE_LOCATION \
---results_dir WHERE_TO_SAVE_RESULTS \
---netG local \
---ngf 32 \
---resize_or_crop none \
---no_instance \
---how_many 10000 \
---label_nc 6
-```
-
-#### Face GAN stage
-```
-# test model at 1024x512 resolution with face GAN
-python test_fullts.py \
---name MY_MODEL_NAME_face \
---dataroot MY_TEST_DATASET \
---checkpoints_dir CHECKPOINT_FILE_LOCATION \
---results_dir WHERE_TO_SAVE_RESULTS \
---face_generator \
---faceGtype global \
---netG local \
---ngf 32 \
---resize_or_crop none \
 --no_instance \
 --how_many 10000 \
 --label_nc 6
@@ -160,27 +84,6 @@ python graph_avesmooth.py \
 --spread 500 29999 4 \
 --facetexts
 ```
-
-### graph_posenorm.py
-will prepare a dataset with global pose normalization + median smoothing
-- test_label (contains 1024x512 inputs)
-- test_img (contains 1024x512 targets)
-- test_factexts128 (contains face 128x128 bounding box coordinates in .txt files)
-```
-python graph_posenorm.py \
---target_keypoints /data/scratch/caroline/keypoints/wholedance_keys \
---source_keypoints /data/scratch/caroline/keypoints/dubstep_keypointsFOOT \
---target_shape 1080 1920 3 \
---source_shape 1080 1920 3 \
---source_frames /data/scratch/caroline/frames/dubstep_frames \
---results /data/scratch/caroline/savefolder \
---target_spread 30003 178780 \
---source_spread 200 4800 \
---calculate_scale_translation
---facetexts
-```
-
-
 
 ## Acknowledgements
 
