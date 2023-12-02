@@ -12,7 +12,7 @@ pip install dominate
 ```
 3. Clone this repository
 ```
-git clone https://github.com/carolineec/EverybodyDanceNow
+git clone https://github.com/AnnikaAlonzo/DSP-1-2223-C2-Orthopedic-Rehabilitation-Exercise-System.git
 ```
 
 
